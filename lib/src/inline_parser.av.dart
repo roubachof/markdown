@@ -26,13 +26,13 @@ class ArcadeValleyLinkSyntax extends LinkSyntax {
             startCharacter: $exclamation);
 
   @override
-  Element _createNode(String destination, String? title,
+  Element createNode(String destination, String? title,
       {required List<Node> Function() getChildren}) {
-    var element = Element.empty(elementName);
-    var children = getChildren();
+    final element = Element.empty(elementName);
+    final children = getChildren();
     element.attributes['src'] = destination;
-    String idInfoPair = children.map((node) => node.textContent).join();
-    var splitIdInfo = idInfoPair.split(':');
+    final String idInfoPair = children.map((node) => node.textContent).join();
+    final splitIdInfo = idInfoPair.split(':');
     element.attributes['id'] = splitIdInfo[0];
     element.attributes['info'] = splitIdInfo[1];
     if (title != null && title.isNotEmpty) {
@@ -57,6 +57,15 @@ class MusicSyntax extends ArcadeValleyLinkSyntax {
       : super(
           ArcadeValleyElements.music,
           r'!mus\[',
+          linkResolver: linkResolver,
+        );
+}
+
+class VideoSyntax extends ArcadeValleyLinkSyntax {
+  VideoSyntax({Resolver? linkResolver})
+      : super(
+          ArcadeValleyElements.video,
+          r'!vid\[',
           linkResolver: linkResolver,
         );
 }

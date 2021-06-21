@@ -16,6 +16,7 @@ import 'inline_syntaxes/inline_syntax.dart';
 import 'inline_syntaxes/line_break_syntax.dart';
 import 'inline_syntaxes/link_syntax.dart';
 import 'inline_syntaxes/text_syntax.dart';
+import 'util.dart';
 
 part 'inline_parser.av.dart';
 

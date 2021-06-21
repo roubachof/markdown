@@ -9,6 +9,8 @@ import 'document.dart';
 import 'emojis.dart';
 import 'util.dart';
 
+part 'inline_parser.av.dart';
+
 /// Maintains the internal state needed to parse inline span elements in
 /// Markdown.
 class InlineParser {

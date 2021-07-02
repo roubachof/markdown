@@ -20,10 +20,10 @@ class ArcadeValleyLinkSyntax extends LinkSyntax {
     var element = Element.empty(elementName);
     var children = getChildren();
     element.attributes['src'] = destination;
-    String idWithPoints = children.map((node) => node.textContent).join();
-    var splitIdPoints = idWithPoints.split(':');
-    element.attributes['id'] = splitIdPoints[0];
-    element.attributes['points'] = splitIdPoints[1];
+    String idInfoPair = children.map((node) => node.textContent).join();
+    var splitIdInfo = idInfoPair.split(':');
+    element.attributes['id'] = splitIdInfo[0];
+    element.attributes['info'] = splitIdInfo[1];
     if (title != null && title.isNotEmpty) {
       element.attributes['title'] =
           escapeAttribute(title.replaceAll('&', '&amp;'));

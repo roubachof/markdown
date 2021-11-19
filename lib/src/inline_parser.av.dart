@@ -4,6 +4,15 @@ part of 'inline_parser.dart';
 ///////////////////// ENTERING ARCADE VALLEY MARKDOWN ////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
+class ArcadeValleyElements {
+  static const audio = 'audio';
+  static const music = 'music';
+  static const podcast = 'podcast';
+  static const navigation = 'navigation';
+  static const condition = 'if';
+  static const then = 'then';
+}
+
 class ArcadeValleyLinkSyntax extends LinkSyntax {
   final String elementName;
 
@@ -35,7 +44,7 @@ class ArcadeValleyLinkSyntax extends LinkSyntax {
 class AudioSyntax extends ArcadeValleyLinkSyntax {
   AudioSyntax({Resolver? linkResolver})
       : super(
-          'audio',
+          ArcadeValleyElements.audio,
           r'!aud\[',
           linkResolver: linkResolver,
         );
@@ -44,7 +53,7 @@ class AudioSyntax extends ArcadeValleyLinkSyntax {
 class MusicSyntax extends ArcadeValleyLinkSyntax {
   MusicSyntax({Resolver? linkResolver})
       : super(
-          'music',
+          ArcadeValleyElements.music,
           r'!mus\[',
           linkResolver: linkResolver,
         );
@@ -53,7 +62,7 @@ class MusicSyntax extends ArcadeValleyLinkSyntax {
 class PodcastSyntax extends ArcadeValleyLinkSyntax {
   PodcastSyntax({Resolver? linkResolver})
       : super(
-          'podcast',
+          ArcadeValleyElements.podcast,
           r'!pod\[',
           linkResolver: linkResolver,
         );
@@ -62,7 +71,7 @@ class PodcastSyntax extends ArcadeValleyLinkSyntax {
 class NavigationSyntax extends ArcadeValleyLinkSyntax {
   NavigationSyntax({Resolver? linkResolver})
       : super(
-          'navigation',
+          ArcadeValleyElements.navigation,
           r'!nav\[',
           linkResolver: linkResolver,
         );
@@ -71,7 +80,7 @@ class NavigationSyntax extends ArcadeValleyLinkSyntax {
 class IfSyntax extends ArcadeValleyLinkSyntax {
   IfSyntax({Resolver? linkResolver})
       : super(
-          'if',
+          ArcadeValleyElements.condition,
           r'!if\[',
           linkResolver: linkResolver,
         );
@@ -80,7 +89,7 @@ class IfSyntax extends ArcadeValleyLinkSyntax {
 class ThenSyntax extends ArcadeValleyLinkSyntax {
   ThenSyntax({Resolver? linkResolver})
       : super(
-          'then',
+          ArcadeValleyElements.then,
           r'!then\[',
           linkResolver: linkResolver,
         );

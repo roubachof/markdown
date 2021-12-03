@@ -12,6 +12,7 @@ class ArcadeValleyElements {
   static const navigation = 'navigation';
   static const condition = 'if';
   static const then = 'then';
+  static const widget = 'widget';
 }
 
 class ArcadeValleyLinkSyntax extends LinkSyntax {
@@ -92,6 +93,15 @@ class ThenSyntax extends ArcadeValleyLinkSyntax {
       : super(
           ArcadeValleyElements.then,
           r'!then\[',
+          linkResolver: linkResolver,
+        );
+}
+
+class WidgetSyntax extends ArcadeValleyLinkSyntax {
+  WidgetSyntax({Resolver? linkResolver})
+      : super(
+          ArcadeValleyElements.widget,
+          r'!widget\[',
           linkResolver: linkResolver,
         );
 }

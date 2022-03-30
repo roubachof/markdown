@@ -1120,6 +1120,8 @@ class LinkSyntax extends TagSyntax {
           buffer.writeCharCode(char);
         }
         buffer.writeCharCode(next);
+      } else if (char == $lbracket) {
+        return null;
       } else if (char == $rbracket) {
         break;
       } else {

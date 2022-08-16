@@ -13,6 +13,7 @@ class ArcadeValleyElements {
   static const condition = 'if';
   static const then = 'then';
   static const widget = 'widget';
+  static const emphasize = 'emphasize';
 }
 
 class ArcadeValleyLinkSyntax extends LinkSyntax {
@@ -32,9 +33,14 @@ class ArcadeValleyLinkSyntax extends LinkSyntax {
     final children = getChildren();
     element.attributes['src'] = destination;
     final String idInfoPair = children.map((node) => node.textContent).join();
-    final splitIdInfo = idInfoPair.split(':');
-    element.attributes['id'] = splitIdInfo[0];
-    element.attributes['info'] = splitIdInfo[1];
+
+    if (elementName == ArcadeValleyElements.emphasize) {
+      EmphasizeSyntax.parse(element, idInfoPair);
+    } else {
+      final splitIdInfo = idInfoPair.split(':');
+      element.attributes['id'] = splitIdInfo[0];
+      element.attributes['info'] = splitIdInfo[1];
+    }
     if (title != null && title.isNotEmpty) {
       element.attributes['title'] =
           escapeAttribute(title.replaceAll('&', '&amp;'));
@@ -113,4 +119,29 @@ class WidgetSyntax extends ArcadeValleyLinkSyntax {
           r'!widget\[',
           linkResolver: linkResolver,
         );
+}
+
+class EmphasizeSyntax extends ArcadeValleyLinkSyntax {
+  static const blink = 'blk';
+  static const color = "col";
+
+  EmphasizeSyntax({Resolver? linkResolver})
+      : super(
+          ArcadeValleyElements.emphasize,
+          r'!em\[',
+          linkResolver: linkResolver,
+        );
+
+  static void parse(Element element, String options) {
+    final optionSplit = options.split(';');
+    for (var option in optionSplit) {
+      if (option == blink) {
+        element.attributes[blink] = "true";
+      }
+
+      if (option.startsWith('#')) {
+        element.attributes[color] = option.substring(1);
+      }
+    }
+  }
 }

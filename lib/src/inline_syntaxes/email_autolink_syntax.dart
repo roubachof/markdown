@@ -10,9 +10,9 @@ import 'inline_syntax.dart';
 
 /// Matches autolinks like `<foo@bar.example.com>`.
 ///
-/// See <http://spec.commonmark.org/0.28/#email-address>.
+/// See <https://spec.commonmark.org/0.30/#email-address>.
 class EmailAutolinkSyntax extends InlineSyntax {
-  static final _email =
+  static const _email =
       r'''[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}'''
       r'''[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*''';
 

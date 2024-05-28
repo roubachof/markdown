@@ -19,9 +19,10 @@ class Element implements Node {
   final List<Node>? children;
   final Map<String, String> attributes;
   String? generatedId;
+  String? footnoteLabel;
 
   /// Instantiates a [tag] Element with [children].
-  Element(this.tag, this.children) : attributes = <String, String>{};
+  Element(this.tag, this.children) : attributes = {};
 
   /// Instantiates an empty, self-closing [tag] Element.
   Element.empty(this.tag)
@@ -30,7 +31,7 @@ class Element implements Node {
 
   /// Instantiates a [tag] Element with no [children].
   Element.withTag(this.tag)
-      : children = [],
+      : children = const [],
         attributes = {};
 
   /// Instantiates a [tag] Element with a single Text child.
@@ -45,7 +46,7 @@ class Element implements Node {
   void accept(NodeVisitor visitor) {
     if (visitor.visitElementBefore(this)) {
       if (children != null) {
-        for (var child in children!) {
+        for (final child in children!) {
           child.accept(visitor);
         }
       }
@@ -55,7 +56,10 @@ class Element implements Node {
 
   @override
   String get textContent {
-    return (children ?? []).map((child) => child.textContent).join('');
+    final children = this.children;
+    return children == null
+        ? ''
+        : children.map((child) => child.textContent).join();
   }
 }
 

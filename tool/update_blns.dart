@@ -1,23 +1,14 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
-final _blnsJsonRawUrl =
+import 'update_shared.dart';
+
+const _blnsJsonRawUrl =
     'https://github.com/minimaxir/big-list-of-naughty-strings/raw/master/blns.json';
-final _blnsFilePath = 'test/blns.dart';
+const _blnsFilePath = 'test/blns.dart';
 
 Future<void> main() async {
-  final client = HttpClient();
-  List<String> json;
-  try {
-    final request = await client.getUrl(Uri.parse(_blnsJsonRawUrl));
-    final response = await request.close();
-    final source =
-        await response.cast<List<int>>().transform(utf8.decoder).join('');
-    json = (jsonDecode(source) as List).cast<String>();
-  } finally {
-    client.close();
-  }
+  final json = (await downloadJson(_blnsJsonRawUrl) as List).cast<String>();
   final blnsContent = StringBuffer('''
 // GENERATED FILE. DO NOT EDIT.
 //
@@ -26,6 +17,7 @@ Future<void> main() async {
 // at ${DateTime.now()} by the script, tool/update_blns.dart.
 
 // ignore_for_file: text_direction_code_point_in_literal, use_raw_strings
+// ignore_for_file: lines_longer_than_80_chars
 
 ''');
   blnsContent.writeln('const blns = <String>[');

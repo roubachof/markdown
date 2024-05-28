@@ -1,5 +1,88 @@
-## 6.0.0-dev
+## 7.2.2
 
+* Fix a crash parsing alert block syntax (#584).
+* Have alert block syntax support multiple paragraphs (#577).
+* Require Dart `^3.2.0`.
+
+## 7.2.1
+
+* Address a termination issue with GitHub alert syntax parsing.
+
+## 7.2.0
+
+* Require Dart `^3.1.0`.
+* Update all CommonMark specification links to 0.30.
+* Fix beginning of line detection in `AutolinkExtensionSyntax`.
+* Add a new syntax `AlertBlockSyntax` to parse GitHub Alerts.
+
+## 7.1.1
+
+* Fix delimiter row matching pattern for tables.
+* Tables are now able to interrupt other blocks.
+* Fix an obscure issue with HtmlBlockSyntax.
+
+## 7.1.0
+
+* Support for [footnotes](https://pandoc.org/MANUAL.html#footnotes).
+* Fixed bug causing infinite loop for links inside tables.
+
+## 7.0.2
+
+* Require Dart 2.19
+* Fix an issue in `HeaderWithIdSyntax`, do not generate heading IDs for headings
+  with no content.
+
+## 7.0.1
+
+* Remove RegExp lookarounds from autolink extension patterns. (Fixes issues when
+  running on Safari.)
+
+## 7.0.0
+
+* **Breaking change**: `close()` of `DelimiterSyntax` and `LinkSyntax`
+  returns multiple nodes instead of single one.
+* **Breaking change**: Remove deprecated APIs, including `TagSyntax`,
+  `indicatorForCheckedCheckBox`, and `indicatorForUncheckedCheckBox`.
+* **Breaking change**: Removed `BlockHtmlSyntax`, `BlockTagBlockHtmlSyntax`,
+  `LongBlockHtmlSyntax`, and `OtherTagBlockHtmlSyntax`.
+* **Breaking change**: Change the `line` properties of type `String` to `Line`.
+* **Breaking change**: Change the `lines` properties of type `List<String>` to
+  `List<Line>`.
+* Add a new syntax `HtmlBlockSyntax` to parse HTML blocks.
+* Add an `enableTagfilter` option to `HtmlRenderer` to eanble GFM `tagfilter`
+  extension.
+* Add a new syntax `DecodeHtmlSyntax` to decode HTML entity and numeric
+  character references.
+* Add a new syntax `SoftLineBreakSyntax` to remove the single space before the
+  line ending.
+* Add a new syntax `EscapeHtmlSyntax` to encode (`"`), (`<`), (`>`) and (`&`).
+* Add an option `caseSensitive` to `TextSyntax`.
+* Add a new public method `parse(String text)` for `Document`.
+* Add a new public method `parseLineList(List<Line> text)` for `Document`.
+* Add a new type: `Line`.
+* Add a new optional parameter `parentSyntax` for `parseLines()` of
+  `BlockParser`, which can be used when parsing nested blocks.
+* Add a new optional parameter `disabledSetextHeading` for `parseLines()` of
+  `BlockParser`, which is used to disable the `SetextHeaderSyntax`.
+* Add a new public property `previousSyntax` for `BlockParser`.
+
+## 6.0.1
+
+* Fix a crash in checkbox lists when mixing checkbox items with
+  non-checkbox items.
+
+## 6.0.0
+
+* Require Dart 2.17
+* Add support to GFM extension for GitHub task lists (aka checkboxes).  These
+  are only active in the `gitHubFlavored` and `gitHubWeb` extension sets.
+* Add support for `#ff0000` color swatches.
+* Change emoji list do be derived from the GitHub API. The only two emoji that
+  visually change are `:cricket:` and `:beetle:`. There are alternate emoji
+  `:cricket_game:` and `:lady_beetle:` which can be used to access the previous
+  emoji.  `update_github_emoji.dart` now pulls all emoji info directly from
+  GitHub API and as a result we have now support the entire GitHub emoji set
+  (excluding the 19 custom GitHub specific emoji which have no Unicode support).
 * **Breaking change**: The `TagSyntax` is _deprecated_.
 * Add new syntax `DelimiterSyntax`.
 * **Breaking change**: `StrikethroughSyntax` now extends `DelimiterSyntax`
@@ -137,7 +220,7 @@
 * Render element attributes in the order they were defined.
   Aligns more closely with the strict spec definition.
 * Correctly render `&` within inline image titles.
-* Add 68 new GitHub emojis.
+* Add 68 new GitHub emoji.
 * Escape HTML attribute for fenced code blocks, in the info string.
 
 ## 2.0.2

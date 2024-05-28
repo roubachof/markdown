@@ -1,0 +1,20 @@
+# Run against all markdown files in latest version of packages on pub.dev to
+# see if any can provoke a crash
+
+name: Crash Tests
+
+on:
+  schedule:
+    # “At 00:00 (UTC) on Sunday.”
+    - cron: '0 0 * * 0'
+
+jobs:
+  crash-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b
+      - uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+      - name: Install dependencies
+        run: dart pub get
+      - name: Run crash_test.dart
+        run: dart test -P crash_test test/crash_test.dart

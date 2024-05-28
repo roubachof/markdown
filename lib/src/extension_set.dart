@@ -1,9 +1,14 @@
+import 'block_syntaxes/alert_block_syntax.dart';
 import 'block_syntaxes/block_syntax.dart';
 import 'block_syntaxes/fenced_code_block_syntax.dart';
+import 'block_syntaxes/footnote_def_syntax.dart';
 import 'block_syntaxes/header_with_id_syntax.dart';
+import 'block_syntaxes/ordered_list_with_checkbox_syntax.dart';
 import 'block_syntaxes/setext_header_with_id_syntax.dart';
 import 'block_syntaxes/table_syntax.dart';
+import 'block_syntaxes/unordered_list_with_checkbox_syntax.dart';
 import 'inline_syntaxes/autolink_extension_syntax.dart';
+import 'inline_syntaxes/color_swatch_syntax.dart';
 import 'inline_syntaxes/emoji_syntax.dart';
 import 'inline_syntaxes/inline_html_syntax.dart';
 import 'inline_syntaxes/inline_syntax.dart';
@@ -23,10 +28,7 @@ class ExtensionSet {
   /// fenced code blocks, or inline HTML.
   ///
   /// [Markdown.pl]: http://daringfireball.net/projects/markdown/syntax
-  static final ExtensionSet none = ExtensionSet(
-    List<BlockSyntax>.unmodifiable(<BlockSyntax>[]),
-    List<InlineSyntax>.unmodifiable(<InlineSyntax>[]),
-  );
+  static final ExtensionSet none = ExtensionSet(const [], const []);
 
   /// The [commonMark] extension set is close to compliance with [CommonMark].
   ///
@@ -56,6 +58,10 @@ class ExtensionSet {
         const HeaderWithIdSyntax(),
         const SetextHeaderWithIdSyntax(),
         const TableSyntax(),
+        const UnorderedListWithCheckboxSyntax(),
+        const OrderedListWithCheckboxSyntax(),
+        const FootnoteDefSyntax(),
+        const AlertBlockSyntax(),
       ],
     ),
     List<InlineSyntax>.unmodifiable(
@@ -63,6 +69,7 @@ class ExtensionSet {
         InlineHtmlSyntax(),
         StrikethroughSyntax(),
         EmojiSyntax(),
+        ColorSwatchSyntax(),
         AutolinkExtensionSyntax()
       ],
     ),
@@ -75,6 +82,9 @@ class ExtensionSet {
       <BlockSyntax>[
         const FencedCodeBlockSyntax(),
         const TableSyntax(),
+        const UnorderedListWithCheckboxSyntax(),
+        const OrderedListWithCheckboxSyntax(),
+        const FootnoteDefSyntax(),
       ],
     ),
     List<InlineSyntax>.unmodifiable(

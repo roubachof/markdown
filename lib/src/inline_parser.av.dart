@@ -19,12 +19,8 @@ class ArcadeValleyElements {
 class ArcadeValleyLinkSyntax extends LinkSyntax {
   final String elementName;
 
-  ArcadeValleyLinkSyntax(this.elementName, String pattern,
-      {Resolver? linkResolver})
-      : super(
-            linkResolver: linkResolver,
-            pattern: pattern,
-            startCharacter: $exclamation);
+  ArcadeValleyLinkSyntax(this.elementName, String pattern, {Resolver? linkResolver})
+      : super(linkResolver: linkResolver, pattern: pattern, startCharacter: $exclamation);
 
   @override
   Element createNode(String destination, String? title,
@@ -42,8 +38,7 @@ class ArcadeValleyLinkSyntax extends LinkSyntax {
       element.attributes['info'] = splitIdInfo[1];
     }
     if (title != null && title.isNotEmpty) {
-      element.attributes['title'] =
-          escapeAttribute(title.replaceAll('&', '&amp;'));
+      element.attributes['title'] = title;
     }
     return element;
   }

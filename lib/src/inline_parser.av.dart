@@ -19,8 +19,8 @@ class ArcadeValleyElements {
 class ArcadeValleyLinkSyntax extends LinkSyntax {
   final String elementName;
 
-  ArcadeValleyLinkSyntax(this.elementName, String pattern, {Resolver? linkResolver})
-      : super(linkResolver: linkResolver, pattern: pattern, startCharacter: $exclamation);
+  ArcadeValleyLinkSyntax(this.elementName, String pattern, {super.linkResolver})
+      : super(pattern: pattern, startCharacter: $exclamation);
 
   @override
   Element createNode(String destination, String? title,
@@ -28,7 +28,7 @@ class ArcadeValleyLinkSyntax extends LinkSyntax {
     final element = Element.empty(elementName);
     final children = getChildren();
     element.attributes['src'] = destination;
-    final String idInfoPair = children.map((node) => node.textContent).join();
+    final idInfoPair = children.map((node) => node.textContent).join();
 
     if (elementName == ArcadeValleyElements.emphasize) {
       EmphasizeSyntax.parse(element, idInfoPair);
@@ -118,7 +118,7 @@ class WidgetSyntax extends ArcadeValleyLinkSyntax {
 
 class EmphasizeSyntax extends ArcadeValleyLinkSyntax {
   static const blink = 'blk';
-  static const color = "col";
+  static const color = 'col';
 
   EmphasizeSyntax({Resolver? linkResolver})
       : super(
@@ -129,9 +129,9 @@ class EmphasizeSyntax extends ArcadeValleyLinkSyntax {
 
   static void parse(Element element, String options) {
     final optionSplit = options.split(';');
-    for (var option in optionSplit) {
+    for (final option in optionSplit) {
       if (option == blink) {
-        element.attributes[blink] = "true";
+        element.attributes[blink] = 'true';
       }
 
       if (option.startsWith('#')) {

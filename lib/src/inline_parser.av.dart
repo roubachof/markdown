@@ -6,6 +6,7 @@ part of 'inline_parser.dart';
 
 class ArcadeValleyElements {
   static const audio = 'audio';
+  static const sample = 'sample';
   static const music = 'media';
   static const video = 'video';
   static const podcast = 'podcast';
@@ -49,6 +50,15 @@ class AudioSyntax extends ArcadeValleyLinkSyntax {
       : super(
           ArcadeValleyElements.audio,
           r'!aud\[',
+          linkResolver: linkResolver,
+        );
+}
+
+class SampleSyntax extends ArcadeValleyLinkSyntax {
+  SampleSyntax({Resolver? linkResolver})
+      : super(
+          ArcadeValleyElements.sample,
+          r'!sam\[',
           linkResolver: linkResolver,
         );
 }
